@@ -17,5 +17,9 @@
         "postcss": "^8.1.14",
         "vue": "^3.1.5",
         "vue-loader": "^16.3.3"
+    },
+    "dependencies": {
+        "element-plus": "^1.0.2-beta.65",
+        "vue-material": "^1.0.0-beta-15"
     }
 }

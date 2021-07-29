@@ -1,18 +1,9 @@
 <template>
-  <div>
-    {{message}}
-  </div>
+  <Posts></Posts>
 </template>
 <script>
 const default_layout = "default";
 
 
-export default {
-  computed: {},
-  data() {
-      return {
-          message:'This works ?'
-      }
-  }
-};
+export default {};
 </script>

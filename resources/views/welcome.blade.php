@@ -7,7 +7,6 @@
         
     </head>
     <body class="antialiased">
-    test
     <div id="app">
         <app></app>
     </div>
