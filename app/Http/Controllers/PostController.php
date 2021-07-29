@@ -34,7 +34,7 @@ class PostController extends Controller
         $post->title = $request['title'];
         $post->description = $request['description'];
         $post->save();
-        return $this->outputSuccessfulApi('success');
+        return $this->outputSuccessfulApi($post);
     }
 
     /**

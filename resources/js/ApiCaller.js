@@ -31,7 +31,6 @@ class ApiCaller {
                 body: JSON.stringify(body)
             })
                 .then(response => {
-                    //console.log("here"+response.toSource());
                     if (response.status !== 200)
                        throw new Error()
                     else

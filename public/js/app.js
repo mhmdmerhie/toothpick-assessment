@@ -20733,6 +20733,7 @@ var Posts = {
   data: function data() {
     return {
       editDrawer: false,
+      addDrawer: false,
       post: {},
       postIndex: 0,
       errorOccured: false,
@@ -20785,7 +20786,6 @@ var Posts = {
       this.posts.splice(index, 1);
     },
     openEditMode: function openEditMode(post, index) {
-      console.log(post);
       this.post = post;
       this.postIndex = index;
       this.editDrawer = true;
@@ -20821,6 +20821,39 @@ var Posts = {
             }
           }
         }, _callee3);
+      }))();
+    },
+    openAddPostForm: function openAddPostForm() {
+      this.post = {};
+      this.addDrawer = true;
+    },
+    addPost: function addPost() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return apiCaller.apiFetch('POST', "/api/post", false, {
+                  title: _this4.post.title,
+                  description: _this4.post.description
+                }).then(function (res) {
+                  _this4.posts.push(res.result);
+
+                  _this4.addDrawer = false;
+                })["catch"](function (err) {
+                  _this4.errorOccured = true;
+                  _this4.errorMessage = 'field cant be empty';
+                });
+
+              case 2:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
       }))();
     }
   },
@@ -20957,6 +20990,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Confirm");
 
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Confirm");
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Post = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Post");
 
@@ -20964,9 +20999,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_el_row = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("el-row");
 
-  var _component_el_input = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("el-input");
-
   var _component_el_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("el-button");
+
+  var _component_el_input = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("el-input");
 
   var _component_el_alert = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("el-alert");
 
@@ -21007,7 +21042,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )]);
   }), 256
   /* UNKEYED_FRAGMENT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_el_drawer, {
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_el_button, {
+    type: "success",
+    icon: "el-icon-plus",
+    circle: "",
+    "class": "add-button",
+    onClick: _ctx.openAddPostForm
+  }, null, 8
+  /* PROPS */
+  , ["onClick"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_el_drawer, {
     title: "Edit post",
     modelValue: _ctx.editDrawer,
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
@@ -21044,6 +21087,68 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_1];
+        }),
+        _: 1
+        /* STABLE */
+
+      }), _ctx.errorOccured ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_el_alert, {
+        key: 0,
+        type: "error"
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.errorMessage), 1
+          /* TEXT */
+          )];
+        }),
+        _: 1
+        /* STABLE */
+
+      })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_el_drawer, {
+    title: "Add post",
+    modelValue: _ctx.addDrawer,
+    "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
+      return _ctx.addDrawer = $event;
+    }),
+    direction: "btt"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_el_input, {
+        placeholder: "Title",
+        type: "textarea",
+        modelValue: _ctx.post.title,
+        "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+          return _ctx.post.title = $event;
+        }),
+        maxlength: "255",
+        "show-word-limit": ""
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_el_input, {
+        placeholder: "Description",
+        type: "textarea",
+        modelValue: _ctx.post.description,
+        "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+          return _ctx.post.description = $event;
+        }),
+        maxlength: "255",
+        "show-word-limit": ""
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_el_button, {
+        type: "success",
+        onClick: _cache[7] || (_cache[7] = function ($event) {
+          return _ctx.addPost();
+        })
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_2];
         }),
         _: 1
         /* STABLE */
@@ -21142,7 +21247,6 @@ var ApiCaller = /*#__PURE__*/function () {
                     },
                     body: JSON.stringify(body)
                   }).then(function (response) {
-                    //console.log("here"+response.toSource());
                     if (response.status !== 200) throw new Error();else return response.json();
                   }).then(function (res) {
                     resolve(res);
@@ -21361,7 +21465,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.el-row {\n  margin-bottom: 20px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.el-row {\n  margin-bottom: 20px;\n}\n.add-button {\n  position: fixed;\n  right: 20px;\n  bottom: 20px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
